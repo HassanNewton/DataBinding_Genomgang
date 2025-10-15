@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DataBinding_Genomgang"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <StackPanel>
         <StackPanel>
             <TextBox Text="{Binding FirstName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -15,7 +15,16 @@
             <ComboBox ItemsSource="{Binding Countries, Mode=OneWay}" 
                       SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"/>
             <Label Content="{Binding SelectedCountry}"/>
-
         </StackPanel>
-    </Grid>
+
+        <StackPanel>
+            <TextBox Text="{Binding NewTask, 
+                Mode=TwoWay, 
+                UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Add Task" Click="Button_Click" />
+            <ListBox ItemsSource="{Binding Tasks}"
+                     SelectedItem="{Binding SelectedTask, Mode=TwoWay}"/>
+            <TextBlock Text="{Binding SelectedTask}"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

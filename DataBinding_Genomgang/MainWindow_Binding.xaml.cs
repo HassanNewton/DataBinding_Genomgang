@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
@@ -65,6 +66,29 @@ namespace DataBinding_Genomgang
         }
 
 
+        public ObservableCollection<string> Tasks { get; set; } = new();
+
+        private string _selectedTask;
+        public string SelectedTask
+        {
+            get { return _selectedTask; }
+            set
+            {
+                _selectedTask = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _newTask;
+        public string NewTask
+        {
+            get { return _newTask; }
+            set
+            {
+                _newTask = value;
+                OnPropertyChanged();
+            }
+        }
 
 
 
@@ -81,7 +105,28 @@ namespace DataBinding_Genomgang
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //LÄgga till task i listan TASKS
+            if (!string.IsNullOrWhiteSpace(NewTask))
+            {
+                Tasks.Add(NewTask);
+                NewTask = "";
+            }
+
+        }
     }
+
+    //ObservableCollection notifiera tala om för UI att ändringar har skett
+    //textboxen -> newTask twowaybinding,
+    //ändringar i textboxen påverkar ändringar i Code-behind
+
+    //När vi trycker på Add -> NewTask läggs till i listan TASKS
+    //Listboxen uppdateras automatiskt tack vare ObservableCollection
+
+    //TextBoxen töms automatiskt eftersom NewTask = ""
+    //TextBlocket uppdateras automatiskt när selectedTask ändras
 
 
 }
