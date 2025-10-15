@@ -86,7 +86,7 @@ namespace DataBinding_Genomgang
             set
             {
                 _newTask = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(NewTask));
             }
         }
 
@@ -128,5 +128,19 @@ namespace DataBinding_Genomgang
     //TextBoxen töms automatiskt eftersom NewTask = ""
     //TextBlocket uppdateras automatiskt när selectedTask ändras
 
+    //Vad gör DataContext? 
+    //Anger vart props/datan kommer ifrån
 
+    //Vad händer utan OnPropertyChanged?
+    //UI uppdateras INTE
+
+    //OneWay och TwoWay
+    //oneway kod -> UI
+    //TwoWay kod -> UI & UI -> Kod
+
+    //Varför ObservableCollection<> och inte List<>?
+    //Den notifierar UI vid ändringar (lagt till/tagit bort element)
+
+    //Vad gör [CallerMemeberName]
+    //Skriver automatiskt in prop namnet till metoden OnPropertyChanged
 }
